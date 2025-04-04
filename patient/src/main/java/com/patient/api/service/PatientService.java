@@ -1,6 +1,7 @@
 package com.patient.api.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,16 @@ public class PatientService {
 		return patientRepository.findAll();
 	}
 
-	public void savePatient(Patient patient) {
-		patientRepository.save(patient);
+	public Optional<Patient> getPatientById(Integer id) {
+		return patientRepository.findById(id);
+	}
+
+	public Patient savePatient(Patient patient) {
+		return patientRepository.save(patient);
+	}
+
+	public void deletePatient(Integer id) {
+		patientRepository.deleteById(id);
 	}
 
 }
