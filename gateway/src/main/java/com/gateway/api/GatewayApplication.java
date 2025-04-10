@@ -19,8 +19,11 @@ public class GatewayApplication {
 	RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("patient_route", r -> r
-						.path("/patient")
+						.path("/patient/**")
 						.uri("http://localhost:8081/"))
+				.route("note_route", r -> r
+						.path("/note/**")
+						.uri("http://localhost:8082/"))
 				.build();
 	}
 }
