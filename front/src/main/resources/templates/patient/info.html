@@ -43,6 +43,22 @@
 		<a th:href="@{/patient/list}">retour</a>
 	</div>
 
+	
+	<div class="row">
+			<a th:href="@{/note/add(patientId=${patient.id})}" class="btn btn-primary btn-sm">Add New</a>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Content</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="note : ${notes}">
+						<td th:text="${note.content}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 </div>
 </body>
 </html>

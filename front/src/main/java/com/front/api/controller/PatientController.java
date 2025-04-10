@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.front.api.model.Patient;
+import com.front.api.service.NoteService;
 import com.front.api.service.PatientService;
 
 import jakarta.validation.Valid;
@@ -20,6 +21,8 @@ public class PatientController {
 	
 	@Autowired
 	private PatientService patientService;
+	@Autowired
+	private NoteService noteService;
 	
 	@GetMapping("/patient/list")
     public String home(Model model)//, Principal principal)
@@ -33,6 +36,7 @@ public class PatientController {
     public String infoPatient(@PathVariable Integer id, Model model)
     {
     	model.addAttribute("patient", patientService.findById(id));
+    	model.addAttribute("notes", noteService.getNoteByPatient(id));
         return "patient/info";
     }
 	

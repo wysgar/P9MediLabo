@@ -52,7 +52,7 @@ public class PatientService {
 
 	public void delete(Integer id) {
 		ResponseEntity<Void> response = restClient.delete()
-				  .uri("http://localhost:8084/patient/{id}", id)
+				  .uri("http://localhost:8081/patient/{id}", id)
 				  .retrieve()
 				  .toBodilessEntity();
 	}
