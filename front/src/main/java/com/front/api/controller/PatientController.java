@@ -29,6 +29,13 @@ public class PatientController {
         return "patient/list";
     }
 	
+	@GetMapping("/patient/info/{id}")
+    public String infoPatient(@PathVariable Integer id, Model model)
+    {
+    	model.addAttribute("patient", patientService.findById(id));
+        return "patient/info";
+    }
+	
 	@GetMapping("/patient/add")
     public String addPatientForm(Patient patient) {
         return "patient/add";
@@ -57,7 +64,7 @@ public class PatientController {
         }
     	patient.setId(id);
     	patientService.update(patient);
-        return "redirect:/patient/list";
+        return "redirect:/patient/info/" + id;
     }
     
     @GetMapping("/patient/delete/{id}")

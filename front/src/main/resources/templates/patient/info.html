@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<h2>Info Patient</h2>
+	</div>
+
+	<div class="row">
+		<table>
+			<tr>
+				<th>Name :</th>
+				<td th:text="|${patient.lastName} ${patient.firstName}|"></td>
+			</tr>
+			<tr>
+				<th>Birthday :</th>
+				<td th:text="${patient.birthday}"></td>
+			</tr>
+			<tr>
+				<th>Gender :</th>
+				<td th:text="${patient.gender}"></td>
+			</tr>
+			<tr>
+				<th>Address :</th>
+				<td th:text="${patient.address}"></td>
+			</tr>
+			<tr>
+				<th>Phone :</th>
+				<td th:text="${patient.phone}"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="row">
+		<a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp;|&nbsp;
+		<a th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>&nbsp;|&nbsp;
+		<a th:href="@{/patient/list}">retour</a>
+	</div>
+
+</div>
+</body>
+</html>
