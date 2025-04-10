@@ -33,7 +33,7 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
-	@GetMapping
+	@GetMapping("/list")
 	public List<Patient> getPatient() {
 		return patientService.getPatient();
 	}
