@@ -15,10 +15,10 @@ import jakarta.validation.Valid;
 @Service
 public class PatientService {
 	private RestClient restClient = RestClient.create();
-
+	
 	public List<Patient> getPatients() {
 		List<Patient> result = restClient.get()
-				  .uri("http://localhost:8081/patient/list")
+				  .uri("http://localhost:8084/patient/list")
 				  .retrieve()
 				  .body(new ParameterizedTypeReference<List<Patient>>() {});
 		return result;
@@ -26,7 +26,7 @@ public class PatientService {
 	
 	public Patient findById(Integer id) {
 		Patient result = restClient.get()
-				  .uri("http://localhost:8081/patient/{id}", id)
+				  .uri("http://localhost:8084/patient/{id}", id)
 				  .retrieve()
 				  .body(Patient.class);
 		return result;
@@ -34,7 +34,7 @@ public class PatientService {
 
 	public void save(Patient patient) {
 		ResponseEntity<Void> response = restClient.post()
-				  .uri("http://localhost:8081/patient")
+				  .uri("http://localhost:8084/patient")
 				  .contentType(MediaType.APPLICATION_JSON)
 				  .body(patient)
 				  .retrieve()
@@ -43,7 +43,7 @@ public class PatientService {
 
 	public void update(@Valid Patient patient) {
 		ResponseEntity<Void> response = restClient.put()
-				  .uri("http://localhost:8081/patient/{id}", patient.getId())
+				  .uri("http://localhost:8084/patient/{id}", patient.getId())
 				  .contentType(MediaType.APPLICATION_JSON)
 				  .body(patient)
 				  .retrieve()
@@ -52,7 +52,7 @@ public class PatientService {
 
 	public void delete(Integer id) {
 		ResponseEntity<Void> response = restClient.delete()
-				  .uri("http://localhost:8081/patient/{id}", id)
+				  .uri("http://localhost:8084/patient/{id}", id)
 				  .retrieve()
 				  .toBodilessEntity();
 	}

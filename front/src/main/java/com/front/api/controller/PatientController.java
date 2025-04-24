@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.front.api.model.Patient;
 import com.front.api.service.NoteService;
 import com.front.api.service.PatientService;
+import com.front.api.service.RisqueService;
 
 import jakarta.validation.Valid;
 
@@ -23,12 +24,14 @@ public class PatientController {
 	private PatientService patientService;
 	@Autowired
 	private NoteService noteService;
+	@Autowired
+	private RisqueService risqueService;
 	
 	@GetMapping("/patient/list")
-    public String home(Model model)//, Principal principal)
+    public String home(Model model, Principal principal)
     {
     	model.addAttribute("patients", patientService.getPatients());
-    	//model.addAttribute("remoteUser", principal.getName());
+    	model.addAttribute("remoteUser", principal.getName());
         return "patient/list";
     }
 	
@@ -37,6 +40,7 @@ public class PatientController {
     {
     	model.addAttribute("patient", patientService.findById(id));
     	model.addAttribute("notes", noteService.getNoteByPatient(id));
+    	model.addAttribute("risque", risqueService.getRisque(id));
         return "patient/info";
     }
 	

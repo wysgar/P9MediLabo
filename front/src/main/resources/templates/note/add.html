@@ -25,7 +25,7 @@
 			<div class="form-group">
 				<label for="content" class="col-sm-2 control-label">Content</label>
 				<div class="col-sm-10">
-					<input type="text" th:field="*{content}" id="content" placeholder="Content" class="col-4">
+					<textarea th:field="*{content}" id="content" placeholder="Content" class="col-4 form-control" rows="4"></textarea>
 					<p class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
 				</div>
 			</div>

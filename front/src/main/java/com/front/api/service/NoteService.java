@@ -16,7 +16,7 @@ public class NoteService {
 
 	public List<Note> getNoteByPatient(Integer id) {
 		List<Note> result = restClient.get()
-				  .uri("http://localhost:8082/note/{id}", id)
+				  .uri("http://localhost:8084/note/{id}", id)
 				  .retrieve()
 				  .body(new ParameterizedTypeReference<List<Note>>() {});
 		return result;
@@ -24,7 +24,7 @@ public class NoteService {
 
 	public void save(Note note) {
 		ResponseEntity<Void> response = restClient.post()
-				  .uri("http://localhost:8082/note")
+				  .uri("http://localhost:8084/note")
 				  .contentType(MediaType.APPLICATION_JSON)
 				  .body(note)
 				  .retrieve()

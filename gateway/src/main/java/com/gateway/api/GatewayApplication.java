@@ -24,6 +24,9 @@ public class GatewayApplication {
 				.route("note_route", r -> r
 						.path("/note/**")
 						.uri("http://localhost:8082/"))
+				.route("risque_route", r -> r
+						.path("/risque/**")
+						.uri("http://localhost:8083/"))
 				.build();
 	}
 }
