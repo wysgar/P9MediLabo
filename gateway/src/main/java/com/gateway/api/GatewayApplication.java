@@ -1,5 +1,7 @@
 package com.gateway.api;
 
+import java.util.Base64;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -17,15 +19,22 @@ public class GatewayApplication {
 	
 	@Bean
 	RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+		String credentials = Base64.getEncoder().encodeToString("utilisateur:mdp".getBytes());
 		return builder.routes()
 				.route("patient_route", r -> r
 						.path("/patient/**")
+						.filters(f -> f
+								.addRequestHeader("Authorization", "Basic " + credentials))
 						.uri("http://localhost:8081/"))
 				.route("note_route", r -> r
 						.path("/note/**")
+						.filters(f -> f
+								.addRequestHeader("Authorization", "Basic " + credentials))
 						.uri("http://localhost:8082/"))
 				.route("risque_route", r -> r
 						.path("/risque/**")
+						.filters(f -> f
+								.addRequestHeader("Authorization", "Basic " + credentials))
 						.uri("http://localhost:8083/"))
 				.build();
 	}
