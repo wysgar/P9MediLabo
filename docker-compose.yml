@@ -1,0 +1,64 @@
+services:
+    mongodb:
+        container_name: mongodb
+        image: mongo:6.0
+        ports:
+            - 27017:27017
+        networks:
+            - spring-cloud-network
+    
+    front:
+        container_name: front
+        build:
+            context: front
+            dockerfile: Dockerfile
+        image: front:latest
+        ports:
+            - 8080:8080
+        networks:
+            - spring-cloud-network
+    patient:
+        container_name: patient
+        build:
+            context: patient
+            dockerfile: Dockerfile
+        image: patient:latest
+        ports:
+            - 8081:8081
+        networks:
+            - spring-cloud-network
+    note:
+        container_name: note
+        build:
+            context: note
+            dockerfile: Dockerfile
+        image: note:latest
+        ports:
+            - 8082:8082
+        networks:
+            - spring-cloud-network
+    risque:
+        container_name: risque
+        build:
+            context: risque
+            dockerfile: Dockerfile
+        image: risque:latest
+        depends_on:
+            - mongodb
+        ports:
+            - 8083:8083
+        networks:
+            - spring-cloud-network
+    gateway:
+        container_name: gateway
+        build:
+            context: gateway
+            dockerfile: Dockerfile
+        image: gateway:latest
+        ports:
+            - 8084:8084
+        networks:
+            - spring-cloud-network
+networks:
+    spring-cloud-network:
+        driver: bridge

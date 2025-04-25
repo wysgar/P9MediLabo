@@ -2,6 +2,7 @@ package com.gateway.api;
 
 import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -12,6 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class GatewayApplication {
+	
+	@Value("${patient.url}")
+	private String patientUrl;
+	@Value("${note.url}")
+	private String noteUrl;
+	@Value("${risque.url}")
+	private String risqueUrl;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
@@ -25,17 +33,17 @@ public class GatewayApplication {
 						.path("/patient/**")
 						.filters(f -> f
 								.addRequestHeader("Authorization", "Basic " + credentials))
-						.uri("http://localhost:8081/"))
+						.uri(patientUrl))
 				.route("note_route", r -> r
 						.path("/note/**")
 						.filters(f -> f
 								.addRequestHeader("Authorization", "Basic " + credentials))
-						.uri("http://localhost:8082/"))
+						.uri(noteUrl))
 				.route("risque_route", r -> r
 						.path("/risque/**")
 						.filters(f -> f
 								.addRequestHeader("Authorization", "Basic " + credentials))
-						.uri("http://localhost:8083/"))
+						.uri(risqueUrl))
 				.build();
 	}
 }
