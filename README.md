@@ -25,21 +25,21 @@ These instructions will get you a copy of the project up and running on your loc
 The following commands will be done in a terminal
 
 1. Clone the repository on your machine:
-   ```bash
-   git clone https://github.com/wysgar/P9MediLabo.git
+   `git clone https://github.com/wysgar/P9MediLabo.git`
 
 3. Compilation
+
 Run the following command in each microservices to build their .jar
-   ```bash
-   mvn -DskipTests=true package
+   `mvn -DskipTests=true package`
 
 5. Docker compose
+
 Run the following command in the project root to build the docker images and launch the containers
-   ```bash
-   docker-compose up --build
+   `docker-compose up --build`
 
 7. Access the application
-[Site]([URL](http://localhost:8080/patient/list))
+
+[Site](http://localhost:8080/)
 Credentials :
    - Username : user / Password : password
    - Username : admin / Password : password
