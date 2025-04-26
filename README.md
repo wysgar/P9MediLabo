@@ -3,6 +3,7 @@
 ## Green Code
 
 - Merge lightweight microservices into a modular monolith: this would drastically reduce CPU/RAM usage and simplify deployment.
+- Choose a host with good environmental performance and powered by renewable energy.
 - Adopt constructor injection for all Spring services.
 - Add lightweight logs (INFO level) to understand application flows without overloading memory.
 - Use record classes for simple objects (such as Patient, Note), to improve memory efficiency.
