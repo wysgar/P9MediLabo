@@ -23,7 +23,7 @@ public class Patient {
 	@NotBlank(message = "Gender is mandatory")
 	private String gender;
 	private String address;
-	@Pattern(regexp = "^\\d{3}-\\d{3}-\\d{4}$", message = "The phone number must be in the format XXX-XXX-XXXX, ex : 100-222-3333")
+	//@Pattern(regexp = "^\\d{3}-\\d{3}-\\d{4}$", message = "The phone number must be in the format XXX-XXX-XXXX, ex : 100-222-3333")
 	private String phone;
 	
 	public Integer getId() {
