@@ -2,6 +2,7 @@ package com.risque.api.service;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +11,18 @@ import org.springframework.stereotype.Service;
 import com.risque.api.model.Note;
 import com.risque.api.model.Patient;
 import com.risque.api.model.Risque;
+import com.risque.api.model.Terme;
 
 @Service
 public class RisqueService {
 	
 	@Autowired
 	private InfoService infoService;
-	
 	@Autowired 
 	private NoteService noteService;
-	private static final List<String> triggers = List.of(
-	        "Hémoglobine A1C", "Microalbumine", "Taille", "Poids",
-	        "Fumeur", "Fumeuse", "Anormal", "Cholestérol", "Vertiges",
-	        "Rechute", "Réaction", "Anticorps"
-	    );
+	private static final List<String> triggersLowercase = Arrays.stream(Terme.values())
+		    .map(terme -> terme.getLabel().toLowerCase())
+		    .toList();
 
 	public Risque evaluateRisk(Integer id) {
 		Patient patient = infoService.findById(id); 
@@ -47,12 +46,13 @@ public class RisqueService {
         return Risque.None;
     }
 
-    private int countTriggers(List<Note> notes) {
-    	return (int) notes.stream()
-    	        .mapToLong(note ->
-    	            triggers.stream()
-    	                .filter(trigger -> note.getContent().toLowerCase().contains(trigger.toLowerCase()))
-    	                .count()
-    	        ).sum();
-    }
+	private int countTriggers(List<Note> notes) {
+	    return (int) notes.stream()
+	        .map(note -> note.getContent().toLowerCase())
+	        .mapToLong(contentLowercase ->
+	            triggersLowercase.stream()
+	                .filter(contentLowercase::contains)
+	                .count()
+	        ).sum();
+	}
 }
