@@ -29,17 +29,17 @@ The following commands will be done in a terminal
    git clone https://github.com/wysgar/P9MediLabo.git
 
 3. Compilation
-   Run the following command in each microservices to build their .jar
+Run the following command in each microservices to build their .jar
    ```bash
    mvn -DskipTests=true package
 
-4. Docker compose
-   Run the following command in the project root to build the docker images and launch the containers
+5. Docker compose
+Run the following command in the project root to build the docker images and launch the containers
    ```bash
    docker-compose up --build
 
-5. Access the application
-   [Site]([URL](http://localhost:8080/patient/list))
-   Credentials :
-     - Username : user / Password : password
-     - Username : admin / Password : password
+7. Access the application
+[Site]([URL](http://localhost:8080/patient/list))
+Credentials :
+   - Username : user / Password : password
+   - Username : admin / Password : password
