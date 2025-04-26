@@ -20,6 +20,11 @@ public class GatewayApplication {
 	private String noteUrl;
 	@Value("${risque.url}")
 	private String risqueUrl;
+	
+	@Value("${security.user}")
+	private String user;
+	@Value("${security.password}")
+	private String password;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
@@ -27,7 +32,8 @@ public class GatewayApplication {
 	
 	@Bean
 	RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-		String credentials = Base64.getEncoder().encodeToString("utilisateur:mdp".getBytes());
+		String login = user + ":" + password;
+		String credentials = Base64.getEncoder().encodeToString(login.getBytes());
 		return builder.routes()
 				.route("patient_route", r -> r
 						.path("/patient/**")

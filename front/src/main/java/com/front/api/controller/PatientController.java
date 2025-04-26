@@ -66,7 +66,7 @@ public class PatientController {
     }
 
     @PostMapping("/patient/update/{id}")
-    public String updatePatient(@PathVariable Integer id, Patient patient, BindingResult result, Model model) {
+    public String updatePatient(@PathVariable Integer id, @Valid Patient patient, BindingResult result, Model model) {
     	if (result.hasErrors()) {
             return "patient/update";
         }
