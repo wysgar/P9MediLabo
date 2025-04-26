@@ -42,7 +42,7 @@ The following commands will be done in a terminal
    ```
 
 7. Access the application
-   - [Site](http://localhost:8080/)
+   - [Site](http://localhost:8080/login)
    - Credentials :
       - Username : user / Password : password
       - Username : admin / Password : password
