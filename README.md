@@ -27,7 +27,6 @@ The following commands will be done in a terminal
 1. Clone the repository on your machine:
    ```Bash
    git clone https://github.com/wysgar/P9MediLabo.git
-   cd P9MediLabo
    ```
 
 3. Compilation
